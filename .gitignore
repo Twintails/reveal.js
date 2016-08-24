@@ -13,5 +13,6 @@ css/reveal.min.css
 /css/fonts/
 css/theme/font*
 js/reveal.min.js
-bower_componenets/
-bower_componenets/**
+
+bower_components/
+bower_components/**.*
