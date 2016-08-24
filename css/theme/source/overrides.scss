@@ -1,10 +1,41 @@
+@import "variables";
 @import "terminal";
+@import "../../../bower_components/font-awesome/css/font-awesome";
 
 pre{
   background-color: #3f3f3f;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 #gulpjs-logo{
   width: 205px;
   margin: auto;
+}
+.ds{
+  text-shadow: 0px 0px 4px darken($gray, 100%);
+  filter: drop-shadow(6px 6px 8px darken($gray, 100%));
+}
+a {
+  &:hover > i.fa{
+    text-decoration: underline;
+  }
+  & > i.fa{
+  font-size: 1.6rem;
+  padding: 0 .63rem;
+  }
+}
+a[target="_blank"]:after{
+  @extend .fa;
+  @extend .fa-external-link;
+  content: "\f08e";
+  font-size: .45em;
+  padding: 0 .23em;
+  vertical-align: super;
+}
+a[data-link-type="download"]:after{
+  @extend .fa;
+  @extend .fa-arrow-circle-o-down;
+  content: "\f01a";
+  font-size: .45em;
+  padding: 0 .23em;
+  vertical-align: super;
 }

@@ -17,6 +17,23 @@ module.exports = function(grunt) {
 				' */'
 		},
 
+    copy: {
+      fa: {
+       files: [{
+         expand: true,
+         cwd: 'bower_components/font-awesome',
+         src: 'scss/*.scss',
+         dest: 'css/theme/font-awesome/'
+       },
+       {
+         expand: true,
+         cwd: 'bower_components/font-awesome',
+         src: 'fonts/*',
+         dest: 'css/'
+       }]
+      }
+    },
+
 		qunit: {
 			files: [ 'test/*.html' ]
 		},
@@ -32,6 +49,9 @@ module.exports = function(grunt) {
 		},
 
 		sass: {
+      options: {
+        includePaths: ['css/theme/font-awesome/scss/']
+      },
 			core: {
 				files: {
 					'css/reveal.css': 'css/reveal.scss',
@@ -139,6 +159,7 @@ module.exports = function(grunt) {
 	});
 
 	// Dependencies
+  grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
@@ -150,7 +171,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-zip' );
 
 	// Default task
-	grunt.registerTask( 'default', [ 'css', 'js' ] );
+	grunt.registerTask( 'default', [ 'copy', 'css', 'js' ] );
 
 	// JS task
 	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );
@@ -168,7 +189,7 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'package', [ 'default', 'zip' ] );
 
 	// Serve presentation locally
-	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
+	grunt.registerTask( 'serve', [ 'copy', 'connect', 'watch' ] );
 
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
